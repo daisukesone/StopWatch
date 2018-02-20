@@ -45,11 +45,13 @@ class ViewController: UIViewController {
                                          target: self,
                                          selector: #selector(self.up),
                                          userInfo: nil,
-                                         repeats: true
-                )
-            
-            
-        }
+                                         repeats: true)
+                          }
+        
+    }
+    
+    @IBAction func Reset() {
+        count = 0.0
         
     }
     
