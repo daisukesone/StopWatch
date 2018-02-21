@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     
     //ラベルの宣言
     @IBOutlet var Label: UILabel!
+    //判定ラベルの宣言
+    @IBOutlet var hanteiLabel: UILabel!
+    
     
     var count: Float = 0.0
     
@@ -22,7 +25,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        hanteiLabel.text = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,8 +55,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func Reset() {
-        count = 0.0
+        self.stop()
         
+        //タイマーを初期化
+        count = 0.0
+        //ラベルに表示
+        Label.text = String(format: "%.2f",count)
+        
+        hanteiLabel.text  = ""
     }
     
     @IBAction func stop(){
@@ -61,10 +71,29 @@ class ViewController: UIViewController {
             
             //タイマーが動作していたら停止する
            timer.invalidate()
+            
+           
         
         }
+        self.hantei()
         
     }
+    
+    //判定するメソッドの生成
+    func hantei(){
+        
+        if count > 9.80 && count < 10.20 {
+            
+            hanteiLabel.text = "Perfect"
+            
+        } else if count > 9.70 && count < 10.30 {
+            
+            hanteiLabel.text  = "Good"
+        } else {
+            hanteiLabel.text  = "Bad"
+        }
+    }
+
 
 }
 
